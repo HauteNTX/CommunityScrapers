@@ -1,0 +1,21 @@
+name: My10Inches.com
+sceneByURL:
+  - action: scrapeXPath
+    url:
+      - vod.my10inches.com/trailers
+    scraper: sceneScraper
+xPathScrapers:
+  sceneScraper:
+    scene:
+      Title: //p[@class="text-title marg-bot"]/a
+      URL: //p[@class="text-title marg-bot"]/a/@href
+      Details: //div[@class="text marg-bot"]
+      Image: //div[contains(@class, 'tour_img')]//img[contains(@class, 'thumb-img')]/@src
+      Date:
+        selector: //span[@class="right"]
+        postProcess:
+          - parseDate: "01/02/06"
+      Studio:
+        Name:
+          fixed: My10Inches.com
+# Last Updated September 17, 2025
