@@ -225,6 +225,23 @@ def performer_search(name: str) -> list[ScrapedPerformer]:
     ]
 
 
+def scene_search(name: str) -> list[ScrapedScene]:
+    search_params = {
+        "draw": 2,
+        "start": 0,
+        "length": 10,
+        "search[value]": name,
+        "search[regex]": "false",
+    }
+    search_url = base_url._replace(path="shco", query=urlencode(search_params)).geturl()
+    res = scraper.get(search_url)
+    found = [BeautifulSoup(x[1], "html.parser").contents[0] for x in res.json()["data"]]
+    return [
+        {"title": found.text, "url": base_url._replace(path=found["href"]).geturl()}
+        for found in found
+    ]
+
+
 def movie_from_url(url: str) -> ScrapedMovie | None:
     res = scraper.get(url)
     soup = BeautifulSoup(res.text, "html.parser")
@@ -285,6 +302,8 @@ if __name__ == "__main__":
             result = scene_from_url(url)
         case "scene-by-fragment", args:
             result = scene_from_fragment(args)
+        case "scene-by-name", {"name": name, "extra": _domains} if name:
+            result = scene_search(name)
         case "performer-by-url", {"url": url}:
             result = performer_from_url(url)
         case "performer-by-fragment", args:

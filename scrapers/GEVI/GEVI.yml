@@ -22,6 +22,18 @@ performerByFragment:
     - python
     - GEVI.py
     - performer-by-fragment
+sceneByName:
+  action: script
+  script:
+    - python
+    - GEVI.py
+    - scene-by-name
+sceneByQueryFragment:
+  action: script
+  script:
+    - python
+    - GEVI.py
+    - scene-by-fragment
 sceneByURL:
   - url:
       - gayeroticvideoindex.com/episode
