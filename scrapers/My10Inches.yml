@@ -1,9 +1,16 @@
 name: My10Inches.com
-sceneByURL:
-  - action: scrapeXPath
-    url:
-      - vod.my10inches.com/trailers
-    scraper: sceneScraper
+sceneByFragment:
+  action: scrapeXPath
+  scraper: sceneScraper
+  queryURL: https://vod.my10inches.com/trailers?q={filename}
+  queryURLReplace:
+    filename:
+        - regex: (.*?)\s*\[.*?\]\.[^\.]+$
+          with: $1
+        - regex: (.*?)\.[^\.]+$ # fallback: remove extension if no brackets
+          with: $1
+        - regex: \s
+          with: +
 xPathScrapers:
   sceneScraper:
     scene:
