@@ -11,7 +11,7 @@ config = get_config(
 url = http://localhost:9999
 
 # API key can be generated in Stash's settings page: `Settings > Security > Authentication`
-api_key =
+api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJoYXV0ZW50eCIsInN1YiI6IkFQSUtleSIsImlhdCI6MTc2MjA4ODA5MH0.PhtJAdETdnRpGu3ielU9fKmRPdlxmwpWUCPaQot6UsE"
 """
 )
 
